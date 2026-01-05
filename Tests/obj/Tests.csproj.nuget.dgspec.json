@@ -1,0 +1,226 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Tests/Tests.csproj": {}
+  },
+  "projects": {
+    "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Application/Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Application/Application.csproj",
+        "projectName": "Riwi.CoursesAssessment.Application",
+        "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Application/Application.csproj",
+        "packagesPath": "/home/coders/.nuget/packages/",
+        "outputPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/coders/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/Domain.csproj": {
+                "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/Domain.csproj",
+        "projectName": "Riwi.CoursesAssessment.Domain",
+        "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/Domain.csproj",
+        "packagesPath": "/home/coders/.nuget/packages/",
+        "outputPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/coders/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Tests/Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Tests/Tests.csproj",
+        "projectName": "Tests",
+        "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Tests/Tests.csproj",
+        "packagesPath": "/home/coders/.nuget/packages/",
+        "outputPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/coders/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Application/Application.csproj": {
+                "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Application/Application.csproj"
+              },
+              "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/Domain.csproj": {
+                "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.12.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.6.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.5.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
