@@ -1,0 +1,178 @@
+using Riwi_Courses_Assessment_Backend.Application.DTOs;
+using Riwi_Courses_Assessment_Backend.Application.Interfaces;
+using Riwi_Courses_Assessment_Backend.Domain.Entities;
+using Riwi_Courses_Assessment_Backend.Domain.Exceptions;
+using Riwi_Courses_Assessment_Backend.Domain.Interfaces;
+
+namespace Riwi_Courses_Assessment_Backend.Application.Services;
+
+public class LessonService : ILessonService
+{
+    private readonly ILessonRepository _lessonRepository;
+    private readonly ICourseRepository _courseRepository;
+
+    public LessonService(ILessonRepository lessonRepository, ICourseRepository courseRepository)
+    {
+        _lessonRepository = lessonRepository;
+        _courseRepository = courseRepository;
+    }
+
+    public async Task<LessonDto> GetByIdAsync(Guid id)
+    {
+        var lesson = await _lessonRepository.GetByIdAsync(id);
+        if (lesson == null || lesson.IsDeleted)
+        {
+            throw new LessonNotFoundException(id);
+        }
+
+        return MapToDto(lesson);
+    }
+
+    public async Task<IEnumerable<LessonDto>> GetByCourseIdAsync(Guid courseId)
+    {
+        var course = await _courseRepository.GetByIdAsync(courseId);
+        if (course == null || course.IsDeleted)
+        {
+            throw new CourseNotFoundException(courseId);
+        }
+
+        var lessons = await _lessonRepository.GetByCourseIdAsync(courseId);
+        return lessons.OrderBy(l => l.Order).Select(MapToDto);
+    }
+
+    public async Task<LessonDto> CreateAsync(CreateLessonDto dto)
+    {
+        // Validate course exists
+        var course = await _courseRepository.GetByIdAsync(dto.CourseId);
+        if (course == null || course.IsDeleted)
+        {
+            throw new CourseNotFoundException(dto.CourseId);
+        }
+
+        // Validate order is not negative
+        if (dto.Order < 0)
+        {
+            throw new InvalidLessonOrderException(dto.Order);
+        }
+
+        // Check for duplicate order
+        var hasDuplicate = await _lessonRepository.HasDuplicateOrderAsync(dto.CourseId, dto.Order);
+        if (hasDuplicate)
+        {
+            throw new DuplicateLessonOrderException(dto.CourseId, dto.Order);
+        }
+
+        var lesson = new Lesson
+        {
+            CourseId = dto.CourseId,
+            Title = dto.Title,
+            Order = dto.Order
+        };
+
+        var created = await _lessonRepository.AddAsync(lesson);
+        return MapToDto(created);
+    }
+
+    public async Task<LessonDto> UpdateAsync(Guid id, UpdateLessonDto dto)
+    {
+        var lesson = await _lessonRepository.GetByIdAsync(id);
+        if (lesson == null || lesson.IsDeleted)
+        {
+            throw new LessonNotFoundException(id);
+        }
+
+        // Validate order if changed
+        if (lesson.Order != dto.Order)
+        {
+            if (dto.Order < 0)
+            {
+                throw new InvalidLessonOrderException(dto.Order);
+            }
+
+            // Check for duplicate order (excluding current lesson)
+            var hasDuplicate = await _lessonRepository.HasDuplicateOrderAsync(lesson.CourseId, dto.Order, id);
+            if (hasDuplicate)
+            {
+                throw new DuplicateLessonOrderException(lesson.CourseId, dto.Order);
+            }
+
+            lesson.UpdateOrder(dto.Order);
+        }
+
+        lesson.Title = dto.Title;
+        lesson.UpdatedAt = DateTime.UtcNow;
+
+        await _lessonRepository.UpdateAsync(lesson);
+        return MapToDto(lesson);
+    }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        var lesson = await _lessonRepository.GetByIdAsync(id);
+        if (lesson == null || lesson.IsDeleted)
+        {
+            throw new LessonNotFoundException(id);
+        }
+
+        lesson.SoftDelete();
+        await _lessonRepository.UpdateAsync(lesson);
+    }
+
+    public async Task ReorderAsync(Guid id, int newOrder)
+    {
+        var lesson = await _lessonRepository.GetByIdAsync(id);
+        if (lesson == null || lesson.IsDeleted)
+        {
+            throw new LessonNotFoundException(id);
+        }
+
+        if (newOrder < 0)
+        {
+            throw new InvalidLessonOrderException(newOrder);
+        }
+
+        if (lesson.Order == newOrder)
+        {
+            return; // No change needed
+        }
+
+        var targetLesson = await _lessonRepository.GetByOrderAsync(lesson.CourseId, newOrder);
+        
+        if (targetLesson != null && !targetLesson.IsDeleted)
+        {
+            // Swap orders to avoid duplicates
+            var tempOrder = lesson.Order;
+            lesson.UpdateOrder(newOrder);
+            targetLesson.UpdateOrder(tempOrder);
+            
+            await _lessonRepository.UpdateAsync(lesson);
+            await _lessonRepository.UpdateAsync(targetLesson);
+        }
+        else
+        {
+            // Check if order already exists
+            var hasDuplicate = await _lessonRepository.HasDuplicateOrderAsync(lesson.CourseId, newOrder, id);
+            if (hasDuplicate)
+            {
+                throw new DuplicateLessonOrderException(lesson.CourseId, newOrder);
+            }
+
+            lesson.UpdateOrder(newOrder);
+            await _lessonRepository.UpdateAsync(lesson);
+        }
+    }
+
+    private static LessonDto MapToDto(Lesson lesson)
+    {
+        return new LessonDto
+        {
+            Id = lesson.Id,
+            CourseId = lesson.CourseId,
+            Title = lesson.Title,
+            Order = lesson.Order,
+            CreatedAt = lesson.CreatedAt,
+            UpdatedAt = lesson.UpdatedAt
+        };
+    }
+}
+
