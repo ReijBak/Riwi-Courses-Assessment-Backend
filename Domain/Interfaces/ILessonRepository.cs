@@ -1,0 +1,12 @@
+using Riwi_Courses_Assessment_Backend.Domain.Entities;
+
+namespace Riwi_Courses_Assessment_Backend.Domain.Interfaces;
+
+public interface ILessonRepository : IRepository<Lesson>
+{
+    Task<IEnumerable<Lesson>> GetByCourseIdAsync(Guid courseId);
+    Task<bool> HasDuplicateOrderAsync(Guid courseId, int order, Guid? excludeLessonId = null);
+    Task<Lesson?> GetByOrderAsync(Guid courseId, int order);
+    Task<int> GetMaxOrderAsync(Guid courseId);
+}
+
