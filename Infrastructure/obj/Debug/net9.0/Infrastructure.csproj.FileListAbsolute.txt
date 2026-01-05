@@ -16,3 +16,5 @@
 /home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Infrastructure/obj/Debug/net9.0/refint/Riwi.CoursesAssessment.Infrastructure.dll
 /home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Infrastructure/obj/Debug/net9.0/Riwi.CoursesAssessment.Infrastructure.pdb
 /home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Infrastructure/obj/Debug/net9.0/ref/Riwi.CoursesAssessment.Infrastructure.dll
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Infrastructure/bin/Debug/net9.0/Riwi.CoursesAssessment.Infrastructure.runtimeconfig.json
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Infrastructure/obj/Debug/net9.0/Infrastructure.genruntimeconfig.cache
