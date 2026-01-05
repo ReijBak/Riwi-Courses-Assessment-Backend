@@ -1,11 +1,11 @@
-using Riwi_Courses_Assessment_Backend.Application.DTOs;
-using Riwi_Courses_Assessment_Backend.Application.Interfaces;
-using Riwi_Courses_Assessment_Backend.Domain.Entities;
-using Riwi_Courses_Assessment_Backend.Domain.Enums;
-using Riwi_Courses_Assessment_Backend.Domain.Exceptions;
-using Riwi_Courses_Assessment_Backend.Domain.Interfaces;
+using Riwi.CoursesAssessment.Application.DTOs;
+using Riwi.CoursesAssessment.Application.Interfaces;
+using Riwi.CoursesAssessment.Domain.Entities;
+using Riwi.CoursesAssessment.Domain.Enums;
+using Riwi.CoursesAssessment.Domain.Exceptions;
+using Riwi.CoursesAssessment.Domain.Interfaces;
 
-namespace Riwi_Courses_Assessment_Backend.Application.Services;
+namespace Riwi.CoursesAssessment.Application.Services;
 
 public class CourseService : ICourseService
 {

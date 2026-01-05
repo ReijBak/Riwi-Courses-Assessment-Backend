@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Riwi_Courses_Assessment_Backend.Domain.Entities;
+using Riwi.CoursesAssessment.Domain.Entities;
 
-namespace Riwi_Courses_Assessment_Backend.Infrastructure.Data.Configurations;
+namespace Riwi.CoursesAssessment.Infrastructure.Data.Configurations;
 
 public class LessonConfiguration : IEntityTypeConfiguration<Lesson>
 {

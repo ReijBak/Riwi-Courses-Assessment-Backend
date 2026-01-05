@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Riwi_Courses_Assessment_Backend.Domain.Entities;
+using Riwi.CoursesAssessment.Domain.Entities;
 
-namespace Riwi_Courses_Assessment_Backend.Infrastructure.Data;
+namespace Riwi.CoursesAssessment.Infrastructure.Data;
 
 public class ApplicationDbContext : DbContext
 {

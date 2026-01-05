@@ -1,8 +1,8 @@
 using System.Net;
 using System.Text.Json;
-using Riwi_Courses_Assessment_Backend.Domain.Exceptions;
+using Riwi.CoursesAssessment.Domain.Exceptions;
 
-namespace Riwi_Courses_Assessment_Backend.WebApi.Middleware;
+namespace Riwi.CoursesAssessment.WebApi.Middleware;
 
 public class ExceptionHandlingMiddleware
 {

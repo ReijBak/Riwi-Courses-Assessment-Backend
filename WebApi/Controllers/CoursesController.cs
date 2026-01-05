@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Riwi_Courses_Assessment_Backend.Application.DTOs;
-using Riwi_Courses_Assessment_Backend.Application.Interfaces;
-using Riwi_Courses_Assessment_Backend.Domain.Exceptions;
+using Riwi.CoursesAssessment.Application.DTOs;
+using Riwi.CoursesAssessment.Application.Interfaces;
+using Riwi.CoursesAssessment.Domain.Exceptions;
 
-namespace Riwi_Courses_Assessment_Backend.WebApi.Controllers;
+namespace Riwi.CoursesAssessment.WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

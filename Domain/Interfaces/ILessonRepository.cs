@@ -1,6 +1,6 @@
-using Riwi_Courses_Assessment_Backend.Domain.Entities;
+using Riwi.CoursesAssessment.Domain.Entities;
 
-namespace Riwi_Courses_Assessment_Backend.Domain.Interfaces;
+namespace Riwi.CoursesAssessment.Domain.Interfaces;
 
 public interface ILessonRepository : IRepository<Lesson>
 {

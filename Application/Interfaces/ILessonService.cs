@@ -1,6 +1,6 @@
-using Riwi_Courses_Assessment_Backend.Application.DTOs;
+using Riwi.CoursesAssessment.Application.DTOs;
 
-namespace Riwi_Courses_Assessment_Backend.Application.Interfaces;
+namespace Riwi.CoursesAssessment.Application.Interfaces;
 
 public interface ILessonService
 {

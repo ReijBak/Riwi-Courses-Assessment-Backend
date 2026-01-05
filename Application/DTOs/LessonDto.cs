@@ -1,4 +1,4 @@
-namespace Riwi_Courses_Assessment_Backend.Application.DTOs;
+namespace Riwi.CoursesAssessment.Application.DTOs;
 
 public class LessonDto
 {

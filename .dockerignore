@@ -1,0 +1,49 @@
+# .NET Build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.log
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.swp
+*.swo
+*~
+
+# Entity Framework Migrations (keep migrations folder but ignore some generated files)
+**/Migrations/*.Designer.cs
+
+# Docker
+.dockerignore
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+logs/
+*.log
+
+# Environment files with secrets
+.env
+.env.local
+.env.production
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+

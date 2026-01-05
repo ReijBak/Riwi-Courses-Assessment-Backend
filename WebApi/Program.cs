@@ -1,5 +1,7 @@
-using Riwi_Courses_Assessment_Backend.Infrastructure;
-using Riwi_Courses_Assessment_Backend.WebApi.Middleware;
+using Microsoft.EntityFrameworkCore;
+using Riwi.CoursesAssessment.Infrastructure;
+using Riwi.CoursesAssessment.Infrastructure.Data;
+using Riwi.CoursesAssessment.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +41,25 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Apply migrations automatically on startup (only in Development)
+if (app.Environment.IsDevelopment())
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        try
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            app.Logger.LogInformation("Applying database migrations...");
+            dbContext.Database.Migrate();
+            app.Logger.LogInformation("Database migrations applied successfully.");
+        }
+        catch (Exception ex)
+        {
+            app.Logger.LogError(ex, "An error occurred while applying migrations.");
+        }
+    }
+}
+
 // Configure the HTTP request pipeline
 
 // Exception handling middleware (debe ir primero)
@@ -63,4 +84,14 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+if (app.Environment.IsDevelopment())
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        dbContext.Database.Migrate();
+    }
+}
+
 app.Run();
+

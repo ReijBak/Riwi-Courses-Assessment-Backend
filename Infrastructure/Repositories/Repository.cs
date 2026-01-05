@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using Riwi_Courses_Assessment_Backend.Domain.Entities;
-using Riwi_Courses_Assessment_Backend.Domain.Interfaces;
-using Riwi_Courses_Assessment_Backend.Infrastructure.Data;
+using Riwi.CoursesAssessment.Domain.Entities;
+using Riwi.CoursesAssessment.Domain.Interfaces;
+using Riwi.CoursesAssessment.Infrastructure.Data;
 
-namespace Riwi_Courses_Assessment_Backend.Infrastructure.Repositories;
+namespace Riwi.CoursesAssessment.Infrastructure.Repositories;
 
 public class Repository<T> : IRepository<T> where T : BaseEntity
 {

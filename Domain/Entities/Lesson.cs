@@ -1,6 +1,6 @@
-using Riwi_Courses_Assessment_Backend.Domain.Exceptions;
+using Riwi.CoursesAssessment.Domain.Exceptions;
 
-namespace Riwi_Courses_Assessment_Backend.Domain.Entities;
+namespace Riwi.CoursesAssessment.Domain.Entities;
 
 public class Lesson : BaseEntity
 {

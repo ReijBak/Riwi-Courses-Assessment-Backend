@@ -1,4 +1,4 @@
-namespace Riwi_Courses_Assessment_Backend.Domain.Enums;
+namespace Riwi.CoursesAssessment.Domain.Enums;
 
 public enum CourseStatus
 {

@@ -1,4 +1,4 @@
-namespace Riwi_Courses_Assessment_Backend.Domain.Entities;
+namespace Riwi.CoursesAssessment.Domain.Entities;
 public abstract class BaseEntity
 {
     public Guid Id { get; set; }

@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Riwi_Courses_Assessment_Backend.Domain.Entities;
-using Riwi_Courses_Assessment_Backend.Domain.Enums;
+using Riwi.CoursesAssessment.Domain.Entities;
+using Riwi.CoursesAssessment.Domain.Enums;
 
-namespace Riwi_Courses_Assessment_Backend.Infrastructure.Data.Configurations;
+namespace Riwi.CoursesAssessment.Infrastructure.Data.Configurations;
 
 public class CourseConfiguration : IEntityTypeConfiguration<Course>
 {

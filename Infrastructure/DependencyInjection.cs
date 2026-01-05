@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Riwi_Courses_Assessment_Backend.Application.Interfaces;
-using Riwi_Courses_Assessment_Backend.Application.Services;
-using Riwi_Courses_Assessment_Backend.Domain.Interfaces;
-using Riwi_Courses_Assessment_Backend.Infrastructure.Data;
-using Riwi_Courses_Assessment_Backend.Infrastructure.Repositories;
+using Riwi.CoursesAssessment.Application.Interfaces;
+using Riwi.CoursesAssessment.Application.Services;
+using Riwi.CoursesAssessment.Domain.Interfaces;
+using Riwi.CoursesAssessment.Infrastructure.Data;
+using Riwi.CoursesAssessment.Infrastructure.Repositories;
 
-namespace Riwi_Courses_Assessment_Backend.Infrastructure;
+namespace Riwi.CoursesAssessment.Infrastructure;
 
 public static class DependencyInjection
 {

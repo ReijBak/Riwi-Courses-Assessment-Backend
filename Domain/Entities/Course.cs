@@ -1,7 +1,7 @@
-using Riwi_Courses_Assessment_Backend.Domain.Enums;
-using Riwi_Courses_Assessment_Backend.Domain.Exceptions;
+using Riwi.CoursesAssessment.Domain.Enums;
+using Riwi.CoursesAssessment.Domain.Exceptions;
 
-namespace Riwi_Courses_Assessment_Backend.Domain.Entities;
+namespace Riwi.CoursesAssessment.Domain.Entities;
 
 public class Course : BaseEntity
 {

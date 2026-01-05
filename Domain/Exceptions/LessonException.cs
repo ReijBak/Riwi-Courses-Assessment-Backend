@@ -1,4 +1,4 @@
-namespace Riwi_Courses_Assessment_Backend.Domain.Exceptions;
+namespace Riwi.CoursesAssessment.Domain.Exceptions;
 
 public class LessonNotFoundException : DomainException
 {
