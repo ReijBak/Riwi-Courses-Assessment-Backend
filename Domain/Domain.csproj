@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Riwi_Courses_Assessment_Backend.Domain</RootNamespace>
+    <AssemblyName>Riwi.CoursesAssessment.Domain</AssemblyName>
+  </PropertyGroup>
+
+</Project>
+

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "RzS/QsP/Qe4=",
+  "success": true,
+  "projectFilePath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/WebApi.csproj",
+  "expectedPackageFiles": [
+    "/home/coders/.nuget/packages/microsoft.aspnetcore.openapi/9.0.4/microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
+    "/home/coders/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

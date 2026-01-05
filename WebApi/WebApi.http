@@ -1,0 +1,6 @@
+@Riwi_Courses_Assessment_Backend_HostAddress = http://localhost:5154
+
+GET {{Riwi_Courses_Assessment_Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

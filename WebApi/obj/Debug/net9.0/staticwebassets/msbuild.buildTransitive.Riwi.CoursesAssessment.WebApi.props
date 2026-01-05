@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/Riwi.CoursesAssessment.WebApi.props" />
+</Project>
