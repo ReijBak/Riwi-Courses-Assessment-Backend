@@ -1,4 +1,5 @@
 using Riwi_Courses_Assessment_Backend.Domain.Enums;
+using Riwi_Courses_Assessment_Backend.Domain.Exceptions;
 
 namespace Riwi_Courses_Assessment_Backend.Domain.Entities;
 
@@ -24,16 +25,27 @@ public class Course : BaseEntity
 
     public void Publish()
     {
+        if (Status == CourseStatus.Published)
+        {
+            throw new CourseAlreadyPublishedException(Id);
+        }
+        
         if (!CanBePublished())
         {
-            throw new InvalidOperationException("Cannot publish a course without active lessons.");
+            throw new CourseCannotBePublishedException();
         }
+        
         Status = CourseStatus.Published;
         UpdatedAt = DateTime.UtcNow;
     }
 
     public void Unpublish()
     {
+        if (Status == CourseStatus.Draft)
+        {
+            throw new CourseAlreadyDraftException(Id);
+        }
+        
         Status = CourseStatus.Draft;
         UpdatedAt = DateTime.UtcNow;
     }
@@ -44,4 +56,3 @@ public class Course : BaseEntity
         UpdatedAt = DateTime.UtcNow;
     }
 }
-

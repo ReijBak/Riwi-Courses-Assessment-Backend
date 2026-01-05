@@ -1,3 +1,5 @@
+using Riwi_Courses_Assessment_Backend.Domain.Exceptions;
+
 namespace Riwi_Courses_Assessment_Backend.Domain.Entities;
 
 public class Lesson : BaseEntity
@@ -24,7 +26,7 @@ public class Lesson : BaseEntity
     {
         if (newOrder < 0)
         {
-            throw new ArgumentException("Order cannot be negative.", nameof(newOrder));
+            throw new InvalidLessonOrderException(newOrder);
         }
         Order = newOrder;
         UpdatedAt = DateTime.UtcNow;
