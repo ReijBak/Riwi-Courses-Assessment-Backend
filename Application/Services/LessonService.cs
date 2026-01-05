@@ -118,6 +118,18 @@ public class LessonService : ILessonService
         await _lessonRepository.UpdateAsync(lesson);
     }
 
+    public async Task HardDeleteAsync(Guid id)
+    {
+        // Para hard delete, verificamos que la lección exista (incluso si está soft deleted)
+        var lesson = await _lessonRepository.GetByIdAsync(id);
+        if (lesson == null)
+        {
+            throw new LessonNotFoundException(id);
+        }
+
+        await _lessonRepository.HardDeleteAsync(id);
+    }
+
     public async Task ReorderAsync(Guid id, int newOrder)
     {
         var lesson = await _lessonRepository.GetByIdAsync(id);

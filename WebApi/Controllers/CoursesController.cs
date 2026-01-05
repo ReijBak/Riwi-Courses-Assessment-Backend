@@ -1,12 +1,15 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Riwi.CoursesAssessment.Application.DTOs;
 using Riwi.CoursesAssessment.Application.Interfaces;
+using Riwi.CoursesAssessment.Domain.Constants;
 using Riwi.CoursesAssessment.Domain.Exceptions;
 
 namespace Riwi.CoursesAssessment.WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize] // Requiere autenticación para todos los endpoints
 public class CoursesController : ControllerBase
 {
     private readonly ICourseService _courseService;
@@ -126,6 +129,28 @@ public class CoursesController : ControllerBase
         try
         {
             await _courseService.DeleteAsync(id);
+            return NoContent();
+        }
+        catch (CourseNotFoundException ex)
+        {
+            _logger.LogWarning(ex, "Course not found: {CourseId}", id);
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Hard delete a course (Admin only) - eliminación física
+    /// </summary>
+    [HttpDelete("{id:guid}/hard")]
+    [Authorize(Roles = Roles.Admin)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> HardDelete(Guid id)
+    {
+        try
+        {
+            await _courseService.HardDeleteAsync(id);
             return NoContent();
         }
         catch (CourseNotFoundException ex)

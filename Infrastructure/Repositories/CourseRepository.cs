@@ -56,5 +56,26 @@ public class CourseRepository : Repository<Course>, ICourseRepository
 
         return await query.CountAsync();
     }
+
+    public async Task HardDeleteAsync(Guid id)
+    {
+        // Ignorar el filtro global para poder eliminar incluso registros con IsDeleted = true
+        var course = await _dbSet.IgnoreQueryFilters()
+            .Include(c => c.Lessons)
+            .FirstOrDefaultAsync(c => c.Id == id);
+
+        if (course != null)
+        {
+            // Eliminar las lecciones asociadas primero
+            if (course.Lessons.Any())
+            {
+                _context.Set<Lesson>().RemoveRange(course.Lessons);
+            }
+            
+            // Eliminar el curso
+            _dbSet.Remove(course);
+            await _context.SaveChangesAsync();
+        }
+    }
 }
 

@@ -112,6 +112,18 @@ public class CourseService : ICourseService
         await _courseRepository.UpdateAsync(course);
     }
 
+    public async Task HardDeleteAsync(Guid id)
+    {
+        // Para hard delete, verificamos que el curso exista (incluso si está soft deleted)
+        var course = await _courseRepository.GetByIdAsync(id);
+        if (course == null)
+        {
+            throw new CourseNotFoundException(id);
+        }
+
+        await _courseRepository.HardDeleteAsync(id);
+    }
+
     public async Task PublishAsync(Guid id)
     {
         var course = await _courseRepository.GetByIdWithLessonsAsync(id);

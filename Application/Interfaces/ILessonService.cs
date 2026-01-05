@@ -9,6 +9,7 @@ public interface ILessonService
     Task<LessonDto> CreateAsync(CreateLessonDto dto);
     Task<LessonDto> UpdateAsync(Guid id, UpdateLessonDto dto);
     Task DeleteAsync(Guid id);
+    Task HardDeleteAsync(Guid id);
     Task ReorderAsync(Guid id, int newOrder);
 }
 

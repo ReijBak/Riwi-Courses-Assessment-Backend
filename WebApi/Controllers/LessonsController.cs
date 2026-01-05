@@ -1,12 +1,15 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Riwi.CoursesAssessment.Application.DTOs;
 using Riwi.CoursesAssessment.Application.Interfaces;
+using Riwi.CoursesAssessment.Domain.Constants;
 using Riwi.CoursesAssessment.Domain.Exceptions;
 
 namespace Riwi.CoursesAssessment.WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize] // Requiere autenticación para todos los endpoints
 public class LessonsController : ControllerBase
 {
     private readonly ILessonService _lessonService;
@@ -137,6 +140,28 @@ public class LessonsController : ControllerBase
         try
         {
             await _lessonService.DeleteAsync(id);
+            return NoContent();
+        }
+        catch (LessonNotFoundException ex)
+        {
+            _logger.LogWarning(ex, "Lesson not found: {LessonId}", id);
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Hard delete a lesson (Admin only) - eliminación física
+    /// </summary>
+    [HttpDelete("{id:guid}/hard")]
+    [Authorize(Roles = Roles.Admin)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> HardDelete(Guid id)
+    {
+        try
+        {
+            await _lessonService.HardDeleteAsync(id);
             return NoContent();
         }
         catch (LessonNotFoundException ex)

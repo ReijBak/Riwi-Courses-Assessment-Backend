@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Riwi.CoursesAssessment.Application.Interfaces;
 using Riwi.CoursesAssessment.Application.Services;
+using Riwi.CoursesAssessment.Domain.Entities;
 using Riwi.CoursesAssessment.Domain.Interfaces;
 using Riwi.CoursesAssessment.Infrastructure.Data;
 using Riwi.CoursesAssessment.Infrastructure.Repositories;
@@ -19,6 +21,22 @@ public static class DependencyInjection
                 configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
+        // Identity
+        services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+        {
+            // Password settings
+            options.Password.RequireDigit = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequiredLength = 6;
+
+            // User settings
+            options.User.RequireUniqueEmail = true;
+        })
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
         // Repositories
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<ILessonRepository, LessonRepository>();
@@ -26,6 +44,7 @@ public static class DependencyInjection
         // Services
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<ILessonService, LessonService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         return services;
     }

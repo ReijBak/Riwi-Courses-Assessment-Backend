@@ -45,5 +45,18 @@ public class LessonRepository : Repository<Lesson>, ILessonRepository
 
         return maxOrder ?? 0;
     }
+
+    public async Task HardDeleteAsync(Guid id)
+    {
+        // Ignorar el filtro global para poder eliminar incluso registros con IsDeleted = true
+        var lesson = await _dbSet.IgnoreQueryFilters()
+            .FirstOrDefaultAsync(l => l.Id == id);
+
+        if (lesson != null)
+        {
+            _dbSet.Remove(lesson);
+            await _context.SaveChangesAsync();
+        }
+    }
 }
 

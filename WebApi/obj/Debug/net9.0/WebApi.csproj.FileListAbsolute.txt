@@ -130,3 +130,12 @@
 /home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/appsettings.Docker.json
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/WebApi/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll

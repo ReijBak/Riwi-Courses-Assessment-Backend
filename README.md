@@ -1,6 +1,6 @@
 # 🎓 Riwi Courses Assessment API
 
-API REST para la gestión de cursos y lecciones online, desarrollada con .NET 9.0, Entity Framework Core y PostgreSQL.
+API REST para la gestión de cursos y lecciones online, desarrollada con .NET 9.0, Entity Framework Core y PostgreSQL, con autenticación JWT y sistema de roles.
 
 ## 🚀 Quick Start con Docker (Recomendado)
 
@@ -18,6 +18,26 @@ docker-compose up --build
 http://localhost:5023
 ```
 
+## 🔐 Autenticación
+
+### Usuarios de Prueba (creados automáticamente)
+
+| Rol | Email | Contraseña |
+|-----|-------|------------|
+| **Admin** | admin@riwi.io | Admin123! |
+| **User** | user@riwi.io | User123! |
+
+### Endpoints de Auth (`/api/auth`)
+- `POST /api/auth/register` - Registrar nuevo usuario (público)
+- `POST /api/auth/login` - Iniciar sesión (público)
+- `GET /api/auth/me` - Obtener usuario actual (autenticado)
+
+### Características de Seguridad:
+- ✅ JWT Bearer Authentication
+- ✅ Sistema de Roles (Admin, User)
+- ✅ Hard delete solo para Admin
+- ✅ Tokens configurables (24h por defecto)
+
 ## 📋 Requisitos
 
 - Docker 20.10+
@@ -27,9 +47,9 @@ http://localhost:5023
 ## 🏗️ Arquitectura
 
 ```
-├── Domain/              # Entidades, Excepciones, Interfaces
+├── Domain/              # Entidades, Excepciones, Interfaces, Constants
 ├── Application/         # Casos de Uso, DTOs, Servicios
-├── Infrastructure/      # DbContext, Repositorios, EF Core
+├── Infrastructure/      # DbContext, Repositorios, EF Core, Identity
 ├── WebApi/             # Controllers, Middleware
 └── Tests/              # Tests Unitarios (xUnit + Moq)
 ```
@@ -48,29 +68,31 @@ http://localhost:5023
 
 ### Características:
 - ✅ Migraciones automáticas al iniciar
+- ✅ Seed de usuarios y roles
 - ✅ Health checks configurados
 - ✅ Volúmenes persistentes
 - ✅ Red interna
-- ✅ Hot reload en desarrollo
 
 ## 📊 Endpoints Principales
 
-### Courses (`/api/courses`)
+### Courses (`/api/courses`) - 🔒 Requiere autenticación
 - `GET /api/courses/search` - Buscar cursos (paginado)
 - `GET /api/courses/{id}` - Obtener curso
 - `GET /api/courses/{id}/summary` - Resumen con total de lecciones
 - `POST /api/courses` - Crear curso
 - `PUT /api/courses/{id}` - Actualizar curso
 - `DELETE /api/courses/{id}` - Eliminar (soft delete)
+- `DELETE /api/courses/{id}/hard` - Eliminar físicamente (🔐 Solo Admin)
 - `PATCH /api/courses/{id}/publish` - Publicar curso
 - `PATCH /api/courses/{id}/unpublish` - Despublicar curso
 
-### Lessons (`/api/lessons`)
+### Lessons (`/api/lessons`) - 🔒 Requiere autenticación
 - `GET /api/lessons/course/{courseId}` - Lecciones de un curso
 - `GET /api/lessons/{id}` - Obtener lección
 - `POST /api/lessons` - Crear lección
 - `PUT /api/lessons/{id}` - Actualizar lección
 - `DELETE /api/lessons/{id}` - Eliminar (soft delete)
+- `DELETE /api/lessons/{id}/hard` - Eliminar físicamente (🔐 Solo Admin)
 - `PATCH /api/lessons/{id}/reorder` - Reordenar lección
 
 ## 🎯 Reglas de Negocio
@@ -78,6 +100,7 @@ http://localhost:5023
 ✅ **Publicación de cursos**: Un curso solo puede publicarse si tiene al menos una lección activa
 ✅ **Orden único**: El campo `Order` de las lecciones debe ser único por curso
 ✅ **Soft delete**: Eliminación lógica en cursos y lecciones
+✅ **Hard delete**: Solo disponible para usuarios con rol Admin
 ✅ **Reordenamiento inteligente**: Sin duplicados al reordenar lecciones
 
 ## 🧪 Tests Unitarios
