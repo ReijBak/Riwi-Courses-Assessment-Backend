@@ -1,0 +1,49 @@
+using Microsoft.EntityFrameworkCore;
+using Riwi_Courses_Assessment_Backend.Domain.Entities;
+using Riwi_Courses_Assessment_Backend.Domain.Interfaces;
+using Riwi_Courses_Assessment_Backend.Infrastructure.Data;
+
+namespace Riwi_Courses_Assessment_Backend.Infrastructure.Repositories;
+
+public class LessonRepository : Repository<Lesson>, ILessonRepository
+{
+    public LessonRepository(ApplicationDbContext context) : base(context)
+    {
+    }
+
+    public async Task<IEnumerable<Lesson>> GetByCourseIdAsync(Guid courseId)
+    {
+        return await _dbSet
+            .Where(l => l.CourseId == courseId)
+            .OrderBy(l => l.Order)
+            .ToListAsync();
+    }
+
+    public async Task<bool> HasDuplicateOrderAsync(Guid courseId, int order, Guid? excludeLessonId = null)
+    {
+        var query = _dbSet.Where(l => l.CourseId == courseId && l.Order == order);
+
+        if (excludeLessonId.HasValue)
+        {
+            query = query.Where(l => l.Id != excludeLessonId.Value);
+        }
+
+        return await query.AnyAsync();
+    }
+
+    public async Task<Lesson?> GetByOrderAsync(Guid courseId, int order)
+    {
+        return await _dbSet
+            .FirstOrDefaultAsync(l => l.CourseId == courseId && l.Order == order);
+    }
+
+    public async Task<int> GetMaxOrderAsync(Guid courseId)
+    {
+        var maxOrder = await _dbSet
+            .Where(l => l.CourseId == courseId)
+            .MaxAsync(l => (int?)l.Order);
+
+        return maxOrder ?? 0;
+    }
+}
+
