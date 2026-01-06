@@ -8,18 +8,18 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 # Copy csproj files and restore dependencies
-COPY ["WebApi/WebApi.csproj", "WebApi/"]
-COPY ["Application/Application.csproj", "Application/"]
-COPY ["Domain/Domain.csproj", "Domain/"]
-COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
+COPY ["Src/WebApi/WebApi.csproj", "Src/WebApi/"]
+COPY ["Src/Application/Application.csproj", "Src/Application/"]
+COPY ["Src/Domain/Domain.csproj", "Src/Domain/"]
+COPY ["Src/Infrastructure/Infrastructure.csproj", "Src/Infrastructure/"]
 
-RUN dotnet restore "WebApi/WebApi.csproj"
+RUN dotnet restore "Src/WebApi/WebApi.csproj"
 
 # Copy all source files
 COPY . .
 
 # Build the application
-WORKDIR "/src/WebApi"
+WORKDIR "/src/Src/WebApi"
 RUN dotnet build "WebApi.csproj" -c Release -o /app/build
 
 FROM build AS publish

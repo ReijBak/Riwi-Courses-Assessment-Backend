@@ -47,11 +47,12 @@ http://localhost:5023
 ## 🏗️ Arquitectura
 
 ```
-├── Domain/              # Entidades, Excepciones, Interfaces, Constants
-├── Application/         # Casos de Uso, DTOs, Servicios
-├── Infrastructure/      # DbContext, Repositorios, EF Core, Identity
-├── WebApi/             # Controllers, Middleware
-└── Tests/              # Tests Unitarios (xUnit + Moq)
+├── Src/
+│   ├── Domain/              # Entidades, Excepciones, Interfaces, Constants
+│   ├── Application/         # Casos de Uso, DTOs, Servicios
+│   ├── Infrastructure/      # DbContext, Repositorios, EF Core, Identity
+│   └── WebApi/              # Controllers, Middleware
+└── Tests/                   # Tests Unitarios (xUnit + Moq)
 ```
 
 ### Clean Architecture implementada:
@@ -133,13 +134,13 @@ docker-compose up postgres -d
 
 ### 2. Aplicar migraciones
 ```bash
-dotnet ef migrations add InitialCreate --project Infrastructure --startup-project WebApi
-dotnet ef database update --project Infrastructure --startup-project WebApi
+dotnet ef migrations add InitialCreate --project Src/Infrastructure --startup-project Src/WebApi
+dotnet ef database update --project Src/Infrastructure --startup-project Src/WebApi
 ```
 
 ### 3. Ejecutar la API
 ```bash
-cd WebApi
+cd Src/WebApi
 dotnet run
 ```
 

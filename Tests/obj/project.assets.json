@@ -6783,13 +6783,13 @@
     },
     "Riwi.CoursesAssessment.Application/1.0.0": {
       "type": "project",
-      "path": "../Application/Application.csproj",
-      "msbuildProject": "../Application/Application.csproj"
+      "path": "../Src/Application/Application.csproj",
+      "msbuildProject": "../Src/Application/Application.csproj"
     },
     "Riwi.CoursesAssessment.Domain/1.0.0": {
       "type": "project",
-      "path": "../Domain/Domain.csproj",
-      "msbuildProject": "../Domain/Domain.csproj"
+      "path": "../Src/Domain/Domain.csproj",
+      "msbuildProject": "../Src/Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6829,11 +6829,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Application/Application.csproj": {
-              "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Application/Application.csproj"
+            "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Src/Application/Application.csproj": {
+              "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Src/Application/Application.csproj"
             },
-            "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/Domain.csproj": {
-              "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Domain/Domain.csproj"
+            "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Src/Domain/Domain.csproj": {
+              "projectPath": "/home/coders/Documentos/Steve/Riwi-Courses-Assessment/Riwi-Courses-Assessment-Backend/Src/Domain/Domain.csproj"
             }
           }
         }
