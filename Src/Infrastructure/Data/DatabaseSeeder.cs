@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Riwi.CoursesAssessment.Domain.Constants;
 using Riwi.CoursesAssessment.Domain.Entities;
 
@@ -14,34 +15,51 @@ public static class DatabaseSeeder
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<ApplicationDbContext>>();
 
-        // Asegurarse de que las migraciones estén aplicadas
-        await context.Database.MigrateAsync();
+        // Asegurarse de que la base de datos existe
+        logger.LogInformation("Ensuring database is created...");
+        await context.Database.EnsureCreatedAsync();
+        
+        // Verificar si hay migraciones pendientes y aplicarlas
+        var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
+        if (pendingMigrations.Any())
+        {
+            logger.LogInformation("Applying {Count} pending migrations...", pendingMigrations.Count());
+            await context.Database.MigrateAsync();
+            logger.LogInformation("Migrations applied successfully.");
+        }
+        else
+        {
+            logger.LogInformation("No pending migrations.");
+        }
 
         // Crear roles
-        await SeedRolesAsync(roleManager);
+        await SeedRolesAsync(roleManager, logger);
 
         // Crear usuario de prueba
-        await SeedUsersAsync(userManager);
+        await SeedUsersAsync(userManager, logger);
     }
 
-    private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
+    private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager, ILogger logger)
     {
         foreach (var roleName in Roles.AllRoles)
         {
             if (!await roleManager.RoleExistsAsync(roleName))
             {
+                logger.LogInformation("Creating role: {RoleName}", roleName);
                 await roleManager.CreateAsync(new IdentityRole(roleName));
             }
         }
     }
 
-    private static async Task SeedUsersAsync(UserManager<ApplicationUser> userManager)
+    private static async Task SeedUsersAsync(UserManager<ApplicationUser> userManager, ILogger logger)
     {
         // Usuario Admin de prueba
         var adminEmail = "admin@riwi.io";
         if (await userManager.FindByEmailAsync(adminEmail) == null)
         {
+            logger.LogInformation("Creating admin user: {Email}", adminEmail);
             var adminUser = new ApplicationUser
             {
                 UserName = adminEmail,
@@ -56,6 +74,11 @@ public static class DatabaseSeeder
             if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(adminUser, Roles.Admin);
+                logger.LogInformation("Admin user created successfully.");
+            }
+            else
+            {
+                logger.LogWarning("Failed to create admin user: {Errors}", string.Join(", ", result.Errors.Select(e => e.Description)));
             }
         }
 
@@ -63,6 +86,7 @@ public static class DatabaseSeeder
         var userEmail = "user@riwi.io";
         if (await userManager.FindByEmailAsync(userEmail) == null)
         {
+            logger.LogInformation("Creating test user: {Email}", userEmail);
             var normalUser = new ApplicationUser
             {
                 UserName = userEmail,
@@ -77,6 +101,11 @@ public static class DatabaseSeeder
             if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(normalUser, Roles.User);
+                logger.LogInformation("Test user created successfully.");
+            }
+            else
+            {
+                logger.LogWarning("Failed to create test user: {Errors}", string.Join(", ", result.Errors.Select(e => e.Description)));
             }
         }
     }

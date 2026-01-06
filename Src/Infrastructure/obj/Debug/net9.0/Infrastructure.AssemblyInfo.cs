@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Riwi.CoursesAssessment.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ebdfcf6bcd4d398592f03558a352006005479768")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ac0a329d69bf0bf395cdd24228f5a336eebc730")]
 [assembly: System.Reflection.AssemblyProductAttribute("Riwi.CoursesAssessment.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Riwi.CoursesAssessment.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
